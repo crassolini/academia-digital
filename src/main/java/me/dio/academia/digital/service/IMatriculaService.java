@@ -2,6 +2,7 @@ package me.dio.academia.digital.service;
 
 import me.dio.academia.digital.entity.Matricula;
 import me.dio.academia.digital.entity.form.MatriculaForm;
+import me.dio.academia.digital.entity.form.MatriculaUpdateForm;
 
 import java.util.List;
 
@@ -32,4 +33,11 @@ public interface IMatriculaService {
    */
   void delete(Long id);
 
+  /**
+   * Atualiza uma Matrícula específica.
+   * @param id - id da Matrícula que será removida.
+   * @param form formulário referente aos dados necessários para atualização do Aluno
+   * @return - Matrícula atualizada de acordo com o Id fornecido.
+   */
+  Matricula update(Long id, MatriculaUpdateForm form);
 }

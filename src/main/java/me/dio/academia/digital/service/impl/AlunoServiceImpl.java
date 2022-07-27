@@ -32,7 +32,7 @@ public class AlunoServiceImpl implements IAlunoService {
 
   @Override
   public Aluno get(Long id) {
-    return null;
+    return repository.findById(id).get();
   }
 
   @Override
@@ -44,25 +44,30 @@ public class AlunoServiceImpl implements IAlunoService {
       LocalDate localDate = LocalDate.parse(dataDeNascimento, JavaTimeUtils.LOCAL_DATE_FORMATTER);
       return repository.findByDataDeNascimento(localDate);
     }
-
   }
 
   @Override
   public Aluno update(Long id, AlunoUpdateForm formUpdate) {
+    Aluno aluno = repository.findById(id).get();
+
+    if (aluno != null) {
+      aluno.setNome(formUpdate.getNome());
+      aluno.setBairro(formUpdate.getBairro());
+      aluno.setDataDeNascimento(formUpdate.getDataDeNascimento());
+      return repository.save(aluno);
+    }
     return null;
   }
 
   @Override
   public void delete(Long id) {
+    repository.deleteById(id);
   }
 
   @Override
   public List<AvaliacaoFisica> getAllAvaliacaoFisicaId(Long id) {
-
     Aluno aluno = repository.findById(id).get();
-
     return aluno.getAvaliacoes();
-
   }
 
 }

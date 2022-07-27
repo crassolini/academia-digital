@@ -2,6 +2,7 @@ package me.dio.academia.digital.controller;
 
 import me.dio.academia.digital.entity.Matricula;
 import me.dio.academia.digital.entity.form.MatriculaForm;
+import me.dio.academia.digital.entity.form.MatriculaUpdateForm;
 import me.dio.academia.digital.service.impl.MatriculaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,14 @@ public class MatriculaController {
     return service.getAll(bairro);
   }
 
+  @DeleteMapping
+  public void delete(Long id) {
+    service.delete(id);
+  }
+
+  @PatchMapping
+  public Matricula update(@RequestParam Long id, @RequestBody MatriculaUpdateForm form) {
+    return null;
+  }
 }
 

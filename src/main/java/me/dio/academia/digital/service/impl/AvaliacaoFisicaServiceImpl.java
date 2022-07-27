@@ -35,22 +35,28 @@ public class AvaliacaoFisicaServiceImpl implements IAvaliacaoFisicaService {
 
   @Override
   public AvaliacaoFisica get(Long id) {
-    return null;
+    return avaliacaoFisicaRepository.getById(id);
   }
 
   @Override
   public List<AvaliacaoFisica> getAll() {
-
     return avaliacaoFisicaRepository.findAll();
   }
 
   @Override
   public AvaliacaoFisica update(Long id, AvaliacaoFisicaUpdateForm formUpdate) {
+    AvaliacaoFisica avaliacaoFisica = avaliacaoFisicaRepository.findById(id).get();
+
+    if (avaliacaoFisica != null) {
+      avaliacaoFisica.setPeso(formUpdate.getPeso());
+      avaliacaoFisica.setAltura(formUpdate.getAltura());
+      return avaliacaoFisicaRepository.save(avaliacaoFisica);
+    }
     return null;
   }
 
   @Override
   public void delete(Long id) {
-
+    avaliacaoFisicaRepository.deleteById(id);
   }
 }
